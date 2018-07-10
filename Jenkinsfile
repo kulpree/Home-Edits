@@ -15,7 +15,7 @@ stage('Approval notification'){
               [
                 type: "button",
                 text: "View New Version",         
-                url: "${url}"
+                url: "url"
               ],
               [
                 type: "button",            
