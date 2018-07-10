@@ -31,13 +31,13 @@ stage('Approval notification'){
               [
                 type: "button",
                 text: "Approve",         
-                url: "${currentBuild.absoluteUrl}/input/Proceed"
+                url: "${currentBuild.absoluteUrl}/wfapi/inputSubmit?inputId=Proceed"
               ],
               [
                 type: "button",            
                 text: "Deny",
                 style: "primary",              
-                url: "${currentBuild.absoluteUrl}/input/Abort"
+                url: "${currentBuild.absoluteUrl}/wfapi/inputSubmit?inputId=Abort"
               ]
             ])
         }
