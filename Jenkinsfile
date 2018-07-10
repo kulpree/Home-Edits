@@ -1,27 +1,43 @@
 @Library('devops-library') _
 
+// Edit your app's name below
+def APP_NAME = 'frontend'
+def FRONTEND_B = 'frontend-blue'
+def FRONTEND_G = 'frontend-green'
+def API_B = 'api-blue'
+def API_G = 'api-green'
+def PATHFINDER_URL = "pathfinder.gov.bc.ca"
+def PROJECT_PREFIX = "jag-shuber"
+// Edit your environment TAG names below
+def TAG_NAMES = [
+  'prod'
+]
+def APP_URLS = [
+  "https://${APP_NAME}-${PROJECT_PREFIX}-${TAG_NAMES[0]}.${PATHFINDER_URL}"
+]
+
 def SLACK_PROD_CHANNEL="sheriff_prod_approval"
 def SLACK_MAIN_CHANNEL="#sheriff_scheduling"
 
 stage('Approval notification'){
   node{
             slackNotify(
-            "New Version in environment 🚀",
-            "A new version of the APP_NAME is now in environment",
-            'good',
+            "To Deploy Blue stack with prod tagged image 🚀",
+            "To switch to new version",
+            'Please Aproove or Deny!!',
             env.PROD_SLACK_HOOK,
             SLACK_PROD_CHANNEL,
             [
               [
                 type: "button",
-                text: "View New Version",         
-                url: "url"
+                text: "Approve",         
+                url: "${currentBuild.absoluteUrl}/input/Proceed"
               ],
               [
                 type: "button",            
-                text: "Deploy to Test?",
+                text: "Deny",
                 style: "primary",              
-                url: "${currentBuild.absoluteUrl}/input"
+                url: "${currentBuild.absoluteUrl}/input/Abort"
               ]
             ])
         }
