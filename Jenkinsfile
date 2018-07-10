@@ -5,7 +5,6 @@ def SLACK_MAIN_CHANNEL="#sheriff_scheduling"
 
 stage('Approval notification'){
   node{
-      try{
             slackNotify(
             "New Version in environment 🚀",
             "A new version of the APP_NAME is now in environment",
@@ -25,10 +24,6 @@ stage('Approval notification'){
                 url: "${currentBuild.absoluteUrl}/input"
               ]
             ])
-        }catch(error)
-        {
-          echo "error in build"
-        }
         }
     }
   // Deploying to production
