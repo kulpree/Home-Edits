@@ -44,7 +44,7 @@ stage('Approval notification'){
     }
   // Deploying to production
 stage('Deploy to prod'){
-    timeout(time:3, unit: 'DAYS'){ input: "Deploy to prod", submitter: "ronald-garcia", submitterParameter: 'approvingSubmitter' }
+    timeout(time:3, unit: 'DAYS'){ input 'Deploy to prod', submitter 'ronald-garcia', submitterParameter 'approvingSubmitter' }
     node{
         // Checking current targeted route
         echo "Hello! This is just a test"
