@@ -53,6 +53,7 @@ stage('Deploy to prod'){
     node{
         // Checking current targeted route
         echo "Hello! This is just a test"
+        echo "${currentTarget} & ${newTarget}"
         }
     }
 
