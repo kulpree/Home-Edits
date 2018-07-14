@@ -23,7 +23,7 @@ stage('Approval notification'){
   node{
     // Check for current route target
       ROUT_CHK = sh (
-      script: """oc project jag-shuber-prod; oc get route sheriff-scheduling-reverse-proxy-prod -o template --template='{{ .spec.to.name }}' > route-target; cat route-target""")
+      script: """oc project jag-shuber-test; oc get route frontend -o template --template='{{ .spec.to.name }}' > route-target; cat route-target""")
       // echo ">> ROUT_CHK: ${ROUT_CHK}"
 
             slackNotify(
@@ -67,7 +67,7 @@ stage('Deploy to prod'){
   def getNewTarget() {
   def currentTarget = getCurrentTarget()
   def newTarget = ""
-  if (currentTarget == 'api-blue') {
+  if (currentTarget == 'frontend') {
       newTarget = 'api-green'
   } else if (currentTarget == 'api-green') {
       newTarget = 'api-blue'
